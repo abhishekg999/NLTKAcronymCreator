@@ -62,9 +62,9 @@ import sys
 
 sample_data = ["Hydrogen", "Lithium", "Sodium", "Potasium", "Rubidium", "Caesium", "Francium"]
 
-struct = (5, 2, 0, 1, 4, 5, 0)
+struct = (2, 2, 8, 1, 2, 2, 8)
 
-numbertotag = {0 : "NN", 1 : "VB", 2 : "JJ",3 : "RB",4 : "TO", 5 : "DT", 6 : "NNP"}
+numbertotag = {0 : "NN", 1 : "VB", 2 : "JJ",3 : "RB",4 : "TO", 5 : "DT", 6 : "NNP", 7 : "VBZ", 8: "NNS"}
 
 dictionary = "wordlist.txt"
 
@@ -75,7 +75,6 @@ def acronym_create(parsedwordlist):
 	return acronym
 
 
-
 def creator():
 
 	acronym = acronym_create(sample_data)
@@ -84,6 +83,7 @@ def creator():
 	print (acronym)
 
 	wordlist = nltk.corpus.brown.tagged_words()
+	print(type(wordlist))
 	#wordlist = nltk.word_tokenize(list)
 	#wordlist = nltk.pos_tag(tokenized)
 
@@ -91,12 +91,12 @@ def creator():
 	print("Loaded Word List...")
 
 	for x in range(len(sample_data)):
-		temp = False
-		print("INDEX: " + str(x))
-		print(numbertotag[struct[x]])
+		#print("INDEX: " + str(x))
+		#print(numbertotag[struct[x]])
 		for word in wordlist:
-			if word[1] == numbertotag[struct[x]] and word[0][0] == acronym[x]:
-				print (word[1])
+			#print("If " + word[1] + " == " + numbertotag[struct[x]] + " and " + word[0][0].upper() + " = " + acronym[x])
+			if word[1] == numbertotag[struct[x]] and word[0][0].upper() == acronym[x]:
+				#print (word[1])
 				acrwords += word[0] + " "
 				break
 
@@ -114,8 +114,8 @@ def wordfinder(pos):
 
 
 
-wordfinder(numbertotag[struct[1]])
-#creator()
+#wordfinder(numbertotag[struct[5]])
+creator()
 
 
 
