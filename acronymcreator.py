@@ -80,10 +80,8 @@ def creator():
 	acronym = acronym_create(sample_data)
 	acrwords = ""
 
-	print (acronym)
-
 	wordlist = nltk.corpus.brown.tagged_words()
-	print(type(wordlist))
+
 	#wordlist = nltk.word_tokenize(list)
 	#wordlist = nltk.pos_tag(tokenized)
 
@@ -100,7 +98,7 @@ def creator():
 				acrwords += word[0] + " "
 				break
 
-
+	print (acronym)
 	print (acrwords)
 
 def wordfinder(pos):
