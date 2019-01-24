@@ -62,8 +62,20 @@ import nltk
 import random
 import sys
 
-sample_data = ["Hydrogen", "Lithium", "Sodium", "Potasium", "Rubidium", "Caesium", "Francium"]
+data = ["Hydrogen", "Lithium", "Sodium", "Potasium", "Rubidium", "Caesium", "Francium"]
 
+
+if len(sys.argv) == 8:
+	for w in range(len(sys.argv)-1):
+		data[w] = sys.argv[w+1] 
+else:
+	print("not enough arguments provided, defaulting to sample list")
+
+# TODO MAKE MORE SENTENCE STRUCTS
+
+
+
+#MODIFY TO CHANGE SENTENCE STRUCTURE
 struct = (2, 2, 8, 1, 2, 2, 8)
 
 numbertotag = {0 : "NN", 1 : "VB", 2 : "JJ",3 : "RB",4 : "TO", 5 : "DT", 6 : "NNP", 7 : "VBZ", 8: "NNS"}
@@ -79,7 +91,7 @@ def acronym_create(parsedwordlist):
 
 def creator():
 
-	acronym = acronym_create(sample_data)
+	acronym = acronym_create(data)
 	acrwords = ""
 
 	wordlist = nltk.corpus.brown.tagged_words()
@@ -90,12 +102,14 @@ def creator():
 
 	print("Loaded Word List...")
 
-	for x in range(len(sample_data)):
+	for x in range(len(data)):
+
+		wordlen = random.randrange(4, 7)
 		#print("INDEX: " + str(x))
 		#print(numbertotag[struct[x]])
 		for word in wordlist:
 			#print("If " + word[1] + " == " + numbertotag[struct[x]] + " and " + word[0][0].upper() + " = " + acronym[x])
-			if word[1] == numbertotag[struct[x]] and word[0][0].upper() == acronym[x]:
+			if word[1] == numbertotag[struct[x]] and word[0][0].upper() == acronym[x]: # and len(word[0]) == wordlen??
 				#print (word[1])
 				acrwords += word[0] + " "
 				break
