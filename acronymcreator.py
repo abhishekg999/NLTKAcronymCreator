@@ -62,10 +62,11 @@ import sys
 
 sample_data = ["Hydrogen", "Lithium", "Sodium", "Potasium", "Rubidium", "Caesium", "Francium"]
 
-struct = (5, 2, 1, 1, 4, 5, 0)
+struct = (5, 2, 0, 1, 4, 5, 0)
 
 numbertotag = {0 : "NN", 1 : "VB", 2 : "JJ",3 : "RB",4 : "TO", 5 : "DT", 6 : "NNP"}
 
+dictionary = "wordlist.txt"
 
 def acronym_create(parsedwordlist):
 	acronym = ""
@@ -83,6 +84,8 @@ def creator():
 	print (acronym)
 
 	wordlist = nltk.corpus.brown.tagged_words()
+	#wordlist = nltk.word_tokenize(list)
+	#wordlist = nltk.pos_tag(tokenized)
 
 
 	print("Loaded Word List...")
@@ -104,12 +107,14 @@ def wordfinder(pos):
 	wordlist = nltk.corpus.brown.tagged_words()
 
 	for word in wordlist:
-		print (word[1] + " " + pos)
+		#print (word[1] + " " + pos)
 		if word[1] == pos:
 			print (word[0])	
+			pass
 
 
-wordfinder(numbertotag[struct[0]])
+
+wordfinder(numbertotag[struct[1]])
 #creator()
 
 
